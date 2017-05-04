@@ -10,7 +10,7 @@ const emitProgram = node => {
 };
 
 const emitExpression = node => {
-  `${node.name}(${node.params.map(emitter).join(', ')})`
+  return `${node.name}(${node.params.map(emitter).join(', ')})`
 };
 
 const emitter = node => {
@@ -28,4 +28,4 @@ const emitter = node => {
   }
 };
 
-export default emitter;
+module.exports = emitter;
