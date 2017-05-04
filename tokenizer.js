@@ -1,20 +1,20 @@
 // tokenize single character
-tokenizeCharacter = (type, value, input, current) => {
+const tokenizeCharacter = (type, value, input, current) => {
   return (value === input[current]) ? [1, { type, value }] : [0, null]
 };
 
 // open parentheses tokenizer
-tokenizeParenOpen = (input, current) => {
+const tokenizeParenOpen = (input, current) => {
   return tokenizeCharacter('paren', '(', input, current);
 };
 
 // closed parentheses tokenizer
-tokenizeParenClose = (input, current) => {
+const tokenizeParenClose = (input, current) => {
   return tokenizeCharacter('paren', ')', input, current);
 };
 
 // tokenize multiple characters (using RegEx)
-tokenizePattern = (type, pattern, input, current) => {
+const tokenizePattern = (type, pattern, input, current) => {
   let char = input[current];
   let consumedChars = 0;
   if (pattern.test(char)) {
@@ -30,17 +30,17 @@ tokenizePattern = (type, pattern, input, current) => {
 }
 
 // number tokenizer
-tokenizeNumber = (input, current) => {
+const tokenizeNumber = (input, current) => {
   return tokenizePattern('number', /[0-9]/, input, current);
 };
 
 // name tokenizer
-tokenizeName = (input, current) => {
+const tokenizeName = (input, current) => {
   return tokenizePattern('name', /[a-z]/i, input, current);
 };
 
 // string tokenizer (no escaping)
-tokenizeString = (input, current) => {
+const tokenizeString = (input, current) => {
   if (input[current] === '"') {
     let value = '';
     let consumedChars = 0;
@@ -60,15 +60,15 @@ tokenizeString = (input, current) => {
 };
 
 // skip whitespaces
-skipWhiteSpace = (input, current) => {
+const skipWhiteSpace = (input, current) => {
   return (/\s/.test(input[current])) ? [1, null] : [0, null];
 };
 
 // array of all tokenizer functions
-tokenizers = [skipWhiteSpace, tokenizeParenOpen, tokenizeParenClose, tokenizeString, tokenizeNumber, tokenizeName];
+const tokenizers = [skipWhiteSpace, tokenizeParenOpen, tokenizeParenClose, tokenizeString, tokenizeNumber, tokenizeName];
 
 // take input and create tokens
-tokenizer = (input) => {
+const tokenizer = (input) => {
   let current = 0;
   let tokens = [];
   while (current < input.length) {
