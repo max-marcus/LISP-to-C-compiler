@@ -56,3 +56,5 @@ function parseProgram(tokens) {
   }
   return ast;
 }
+
+module.exports = parseProgram;
