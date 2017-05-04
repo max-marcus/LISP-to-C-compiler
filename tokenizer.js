@@ -90,3 +90,5 @@ const tokenizer = (input) => {
   }
   return tokens;
 }
+
+export default tokenizer;
